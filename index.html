@@ -1,0 +1,1064 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Portafolio - Desarrollador Web</title>
+    <style>
+        /* Reset y estilos base */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --color-primary: #6366f1;
+            --color-secondary: #8b5cf6;
+            --color-dark: #1e293b;
+            --color-light: #f1f5f9;
+            --color-text: #334155;
+            --color-border: #e2e8f0;
+            --color-success: #10b981;
+            --color-warning: #f59e0b;
+            --transition: all 0.3s ease;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--color-text);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        /* Header y navegación */
+        header {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--color-primary);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--color-text);
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--color-primary);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--color-primary);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Sección Hero */
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 6rem 2rem;
+            text-align: center;
+            animation: slideInDown 0.8s ease;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            animation: fadeInUp 0.8s ease 0.2s backwards;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            animation: fadeInUp 0.8s ease 0.4s backwards;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 0.8s ease 0.6s backwards;
+        }
+
+        .btn {
+            padding: 0.8rem 2rem;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: white;
+            color: var(--color-primary);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .btn-secondary:hover {
+            background: white;
+            color: var(--color-primary);
+        }
+
+        /* Contenedor principal */
+        main {
+            max-width: 1200px;
+            margin: -50px auto 0;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Secciones */
+        section {
+            background: white;
+            margin-bottom: 2rem;
+            padding: 3rem 2rem;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            animation: fadeInUp 0.8s ease;
+        }
+
+        h2 {
+            font-size: 2rem;
+            color: var(--color-primary);
+            margin-bottom: 2rem;
+            text-align: center;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+            border-radius: 2px;
+        }
+
+        /* Sección Sobre mí */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about-text p {
+            margin-bottom: 1rem;
+            font-size: 1.05rem;
+        }
+
+        .skills-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .skill-tag {
+            background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            animation: bounceIn 0.6s ease;
+        }
+
+        /* Sección Proyectos */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            border: 1px solid var(--color-border);
+            border-radius: 10px;
+            overflow: hidden;
+            transition: var(--transition);
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .project-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+        }
+
+        .project-info {
+            padding: 1.5rem;
+        }
+
+        .project-info h3 {
+            color: var(--color-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .project-info p {
+            color: #666;
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .tag {
+            background: var(--color-light);
+            color: var(--color-primary);
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        /* Sección Experiencia */
+        .experience-item {
+            border-left: 4px solid var(--color-primary);
+            padding-left: 2rem;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .experience-item::before {
+            content: '';
+            position: absolute;
+            left: -12px;
+            top: 0;
+            width: 20px;
+            height: 20px;
+            background: var(--color-primary);
+            border-radius: 50%;
+            border: 4px solid white;
+        }
+
+        .experience-item h3 {
+            color: var(--color-primary);
+            margin-bottom: 0.3rem;
+        }
+
+        .experience-date {
+            color: #999;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .experience-description {
+            color: #666;
+            margin-top: 0.5rem;
+        }
+
+        /* Sección Servicios */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            padding: 2rem;
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.05), rgba(139, 92, 246, 0.05));
+            border-radius: 10px;
+            text-align: center;
+            border: 1px solid var(--color-border);
+            transition: var(--transition);
+        }
+
+        .service-card:hover {
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(139, 92, 246, 0.1));
+            transform: translateY(-5px);
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .service-card h3 {
+            color: var(--color-primary);
+            margin-bottom: 1rem;
+        }
+
+        /* Sección Testimonios */
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .testimonial-card {
+            background: linear-gradient(135deg, var(--color-light), white);
+            padding: 2rem;
+            border-radius: 10px;
+            border-left: 4px solid var(--color-primary);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            color: #666;
+            margin-bottom: 1rem;
+        }
+
+        .testimonial-author {
+            font-weight: 600;
+            color: var(--color-primary);
+        }
+
+        .rating {
+            color: #ffc107;
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Sección Contacto */
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .contact-item {
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
+        }
+
+        .contact-icon {
+            font-size: 1.5rem;
+            color: var(--color-primary);
+            margin-top: 0.2rem;
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--color-primary);
+        }
+
+        .form-group input,
+        .form-group textarea {
+            padding: 0.8rem;
+            border: 1px solid var(--color-border);
+            border-radius: 5px;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: var(--transition);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--color-primary);
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--color-dark);
+            color: white;
+            padding: 3rem 2rem;
+            margin-top: 3rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            color: var(--color-primary);
+            margin-bottom: 1rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section a {
+            color: #ccc;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-section a:hover {
+            color: var(--color-primary);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--color-primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition);
+            text-decoration: none;
+            color: white;
+        }
+
+        .social-icon:hover {
+            background: var(--color-secondary);
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 2rem;
+            text-align: center;
+            color: #ccc;
+        }
+
+        /* Animaciones */
+        @keyframes slideInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes bounceIn {
+            0% {
+                opacity: 0;
+                transform: scale(0.3);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1.05);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .nav-links {
+                gap: 1rem;
+            }
+
+            .about-content,
+            .contact-content {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn {
+                width: 100%;
+                max-width: 300px;
+            }
+
+            h2 {
+                font-size: 1.5rem;
+            }
+
+            nav {
+                padding: 1rem;
+            }
+
+            section {
+                padding: 2rem 1rem;
+                margin-bottom: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .nav-links {
+                gap: 0.5rem;
+                font-size: 0.9rem;
+            }
+
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .projects-grid,
+            .services-grid,
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .logo {
+                font-size: 1.2rem;
+            }
+        }
+
+        /* Scroll suave */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Barra de progreso */
+        .progress-bar {
+            height: 4px;
+            background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            animation: progress 2s ease-in-out;
+        }
+
+        @keyframes progress {
+            0% { width: 0%; }
+            100% { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+    <div class="progress-bar"></div>
+
+    <!-- Header -->
+    <header>
+        <nav>
+            <div class="logo">💻 J.L. Castillo</div>
+            <ul class="nav-links">
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#sobre">Sobre mí</a></li>
+                <li><a href="#proyectos">Proyectos</a></li>
+                <li><a href="#experiencia">Experiencia</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="inicio">
+        <div class="hero-content">
+            <h1>Hola, soy un Desarrollador Web</h1>
+            <p>Especializado en crear soluciones digitales modernas, responsivas y de alto rendimiento</p>
+            <div class="cta-buttons">
+                <a href="#proyectos" class="btn btn-primary">Ver mis proyectos</a>
+                <a href="#contacto" class="btn btn-secondary">Contáctame</a>
+            </div>
+        </div>
+    </section>
+
+    <main>
+        <!-- Sección Sobre mí -->
+        <section id="sobre">
+            <h2>Sobre mí</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>Soy un desarrollador web apasionado con más de 5 años de experiencia creando aplicaciones web modernas y escalables. Me especializo en frontend y fullstack development utilizando las últimas tecnologías.</p>
+                    <p>Mi objetivo es transformar ideas en soluciones digitales que generen impacto real. Trabajo de manera cercana con mis clientes para entender sus necesidades y entregar resultados excepcionales.</p>
+                    <p>Cuando no estoy programando, disfruto aprendiendo nuevas tecnologías, contribuyendo a proyectos open source y compartiendo conocimiento con la comunidad.</p>
+                </div>
+                <div>
+                    <h3 style="color: var(--color-primary); margin-bottom: 1rem;">Habilidades principales</h3>
+                    <div class="skills-list">
+                        <span class="skill-tag">HTML5</span>
+                        <span class="skill-tag">CSS3</span>
+                        <span class="skill-tag">JavaScript</span>
+                        <span class="skill-tag">React</span>
+                        <span class="skill-tag">Node.js</span>
+                        <span class="skill-tag">Vue.js</span>
+                        <span class="skill-tag">TypeScript</span>
+                        <span class="skill-tag">MongoDB</span>
+                        <span class="skill-tag">PostgreSQL</span>
+                        <span class="skill-tag">Git</span>
+                        <span class="skill-tag">Docker</span>
+                        <span class="skill-tag">AWS</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección Servicios -->
+        <section>
+            <h2>Servicios</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">🎨</div>
+                    <h3>Diseño Web</h3>
+                    <p>Crearé un diseño moderno, atractivo y completamente personalizado para tu negocio</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">⚙️</div>
+                    <h3>Desarrollo Frontend</h3>
+                    <p>Aplicaciones frontend robustas y responsivas utilizando React, Vue.js y tecnologías modernas</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🔌</div>
+                    <h3>API REST</h3>
+                    <p>Desarrollo de APIs escalables y seguras con Node.js, Express y bases de datos modernas</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">📱</div>
+                    <h3>Responsive Design</h3>
+                    <p>Tus proyectos se verán perfectos en cualquier dispositivo: desktop, tablet o móvil</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">⚡</div>
+                    <h3>Optimización</h3>
+                    <p>Mejora del rendimiento, velocidad de carga y posicionamiento SEO de tus aplicaciones</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🛡️</div>
+                    <h3>Seguridad</h3>
+                    <p>Implementación de buenas prácticas de seguridad y protección de datos</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección Proyectos -->
+        <section id="proyectos">
+            <h2>Mis Proyectos</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-image">🛒</div>
+                    <div class="project-info">
+                        <h3>Tienda Online</h3>
+                        <p>Plataforma de comercio electrónico completa con carrito de compras, pagos online y panel administrativo</p>
+                        <div class="project-tags">
+                            <span class="tag">React</span>
+                            <span class="tag">Node.js</span>
+                            <span class="tag">MongoDB</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-image">📊</div>
+                    <div class="project-info">
+                        <h3>Dashboard Analytics</h3>
+                        <p>Sistema de análisis de datos con gráficos interactivos, reportes en tiempo real y exportación</p>
+                        <div class="project-tags">
+                            <span class="tag">Vue.js</span>
+                            <span class="tag">Chart.js</span>
+                            <span class="tag">PostgreSQL</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-image">💬</div>
+                    <div class="project-info">
+                        <h3>Red Social</h3>
+                        <p>Aplicación social completa con sistema de seguimiento, publicaciones, comentarios y mensajería</p>
+                        <div class="project-tags">
+                            <span class="tag">React</span>
+                            <span class="tag">Firebase</span>
+                            <span class="tag">Redux</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-image">🎬</div>
+                    <div class="project-info">
+                        <h3>Plataforma de Videos</h3>
+                        <p>Streaming de videos con reproductor personalizado, categorías, búsqueda y sistema de favoritos</p>
+                        <div class="project-tags">
+                            <span class="tag">JavaScript</span>
+                            <span class="tag">HTML5</span>
+                            <span class="tag">API REST</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-image">🏥</div>
+                    <div class="project-info">
+                        <h3>Sistema Hospitalario</h3>
+                        <p>Aplicación para gestión de pacientes, citas, historiales médicos y base de datos segura</p>
+                        <div class="project-tags">
+                            <span class="tag">React</span>
+                            <span class="tag">Node.js</span>
+                            <span class="tag">MySQL</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-image">🎓</div>
+                    <div class="project-info">
+                        <h3>Plataforma Educativa</h3>
+                        <p>LMS completo con cursos, videos, ejercicios interactivos y sistema de calificaciones</p>
+                        <div class="project-tags">
+                            <span class="tag">Vue.js</span>
+                            <span class="tag">Laravel</span>
+                            <span class="tag">PostgreSQL</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección Experiencia -->
+        <section id="experiencia">
+            <h2>Experiencia Laboral</h2>
+            
+            <div class="experience-item">
+                <h3>Senior Developer</h3>
+                <div class="experience-date">Enero 2023 - Presente</div>
+                <p style="font-weight: 600; color: var(--color-primary);">Tech Solutions Inc.</p>
+                <div class="experience-description">
+                    <p>Lideré el desarrollo de aplicaciones frontend y fullstack para grandes empresas, utilizando React, TypeScript y Node.js. Implementé mejoras de rendimiento que redujeron el tiempo de carga en un 40%.</p>
+                </div>
+            </div>
+
+            <div class="experience-item">
+                <h3>Full Stack Developer</h3>
+                <div class="experience-date">Junio 2021 - Diciembre 2022</div>
+                <p style="font-weight: 600; color: var(--color-primary);">Digital Agency</p>
+                <div class="experience-description">
+                    <p>Desarrollé múltiples proyectos web para clientes del sector financiero, retail y salud. Colaboré con diseñadores UX/UI para implementar interfaces modernas.</p>
+                </div>
+            </div>
+
+            <div class="experience-item">
+                <h3>Junior Developer</h3>
+                <div class="experience-date">Enero 2020 - Mayo 2021</div>
+                <p style="font-weight: 600; color: var(--color-primary);">StartUp Developer</p>
+                <div class="experience-description">
+                    <p>Mi primer rol como desarrollador, donde aprendí las mejores prácticas de programación y trabajé en proyectos con JavaScript vanilla y jQuery.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección Testimonios -->
+        <section>
+            <h2>Testimonios de Clientes</h2>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="rating">⭐⭐⭐⭐⭐</div>
+                    <div class="testimonial-text">"Excelente trabajo. El desarrollador entendió perfectamente mi visión y la transformó en una aplicación increíble. Muy recomendado."</div>
+                    <div class="testimonial-author">Carlos López - CEO de EmpresaX</div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="rating">⭐⭐⭐⭐⭐</div>
+                    <div class="testimonial-text">"Profesional muy responsable y atento a los detalles. Entregó el proyecto a tiempo y con una calidad excepcional."</div>
+                    <div class="testimonial-author">María García - Product Manager</div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="rating">⭐⭐⭐⭐⭐</div>
+                    <div class="testimonial-text">"La mejor inversión que hicimos. El desarrollo de nuestra plataforma fue rápido y el código es muy limpio y mantenible."</div>
+                    <div class="testimonial-author">Juan Rodríguez - CTO de StartupY</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección Contacto -->
+        <section id="contacto">
+            <h2>Contacto</h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="contact-icon">📧</div>
+                        <div>
+                            <h4 style="color: var(--color-primary); margin-bottom: 0.3rem;">Email</h4>
+                            <a href="mailto:tu@email.com" style="color: #666; text-decoration: none;">tu@email.com</a>
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <div class="contact-icon">📱</div>
+                        <div>
+                            <h4 style="color: var(--color-primary); margin-bottom: 0.3rem;">Teléfono</h4>
+                            <a href="tel:+1234567890" style="color: #666; text-decoration: none;">+1 (234) 567-890</a>
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <div class="contact-icon">📍</div>
+                        <div>
+                            <h4 style="color: var(--color-primary); margin-bottom: 0.3rem;">Ubicación</h4>
+                            <p style="color: #666; margin: 0;">Ciudad, País</p>
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <div class="contact-icon">🔗</div>
+                        <div>
+                            <h4 style="color: var(--color-primary); margin-bottom: 0.3rem;">Redes Sociales</h4>
+                            <div class="social-links">
+                                <a href="#" class="social-icon">f</a>
+                                <a href="#" class="social-icon">in</a>
+                                <a href="#" class="social-icon">tw</a>
+                                <a href="#" class="social-icon">gh</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <form class="contact-form" onsubmit="handleSubmit(event)">
+                    <div class="form-group">
+                        <label for="nombre">Nombre</label>
+                        <input type="text" id="nombre" name="nombre" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="asunto">Asunto</label>
+                        <input type="text" id="asunto" name="asunto" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="mensaje">Mensaje</label>
+                        <textarea id="mensaje" name="mensaje" required></textarea>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary" style="align-self: flex-start; width: auto;">Enviar Mensaje</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Sobre mí</h3>
+                <p>Desarrollador web fullstack apasionado por crear experiencias digitales increíbles y soluciones innovadoras.</p>
+            </div>
+
+            <div class="footer-section">
+                <h3>Enlaces Rápidos</h3>
+                <ul>
+                    <li><a href="#inicio">Inicio</a></li>
+                    <li><a href="#sobre">Sobre mí</a></li>
+                    <li><a href="#proyectos">Proyectos</a></li>
+                    <li><a href="#contacto">Contacto</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h3>Servicios</h3>
+                <ul>
+                    <li><a href="#servicios">Diseño Web</a></li>
+                    <li><a href="#servicios">Desarrollo Frontend</a></li>
+                    <li><a href="#servicios">API REST</a></li>
+                    <li><a href="#servicios">Consultoría</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h3>Sígueme</h3>
+                <div class="social-links">
+                    <a href="https://facebook.com" class="social-icon" title="Facebook">f</a>
+                    <a href="https://linkedin.com" class="social-icon" title="LinkedIn">in</a>
+                    <a href="https://twitter.com" class="social-icon" title="Twitter">tw</a>
+                    <a href="https://github.com" class="social-icon" title="GitHub">gh</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2024 Mi Portafolio. Todos los derechos reservados. | Diseñado y desarrollado con ❤️</p>
+        </div>
+    </footer>
+
+    <script>
+        // Manejador del formulario
+        function handleSubmit(event) {
+            event.preventDefault();
+            
+            const nombre = document.getElementById('nombre').value;
+            const email = document.getElementById('email').value;
+            const asunto = document.getElementById('asunto').value;
+            const mensaje = document.getElementById('mensaje').value;
+            
+            // Simulación de envío
+            alert(`Gracias ${nombre}, tu mensaje ha sido enviado. Te contactaremos pronto en ${email}`);
+            
+            // Limpiar formulario
+            event.target.reset();
+        }
+
+        // Efecto de scroll suave para navegación
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href !== '#' && document.querySelector(href)) {
+                    e.preventDefault();
+                    document.querySelector(href).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Efecto de animación al hacer scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+
+        document.querySelectorAll('section').forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(20px)';
+            section.style.transition = 'all 0.6s ease';
+            observer.observe(section);
+        });
+
+        // Agregar efecto de parallax al hero
+        window.addEventListener('scroll', () => {
+            const hero = document.querySelector('.hero');
+            if (hero) {
+                const scrollPosition = window.pageYOffset;
+                hero.style.backgroundPosition = `center ${scrollPosition * 0.5}px`;
+            }
+        });
+    </script>
+</body>
+</html>
